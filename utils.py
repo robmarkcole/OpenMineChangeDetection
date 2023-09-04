@@ -90,7 +90,7 @@ def plot_prediction(
     image5 = to_pil_image(mask_pred.byte())
     image6 = to_pil_image(sample["mask"].byte())
 
-    fig, axs = plt.subplots(3, 2, figsize=(20, 30))
+    fig, axs = plt.subplots(3, 2, figsize=(10, 15))
     axs[0, 0].imshow(image1)
     axs[0, 0].axis("off")
     axs[0, 1].imshow(image2)
@@ -423,7 +423,7 @@ def download_prep_oms2cd(output_dir):
         zip_ref.extractall(output_dir)
 
     print(f'Removing .zip file.')
-    os.remove(oms2cd_file, missing_ok=True)
+    os.remove(oms2cd_file) # missing_ok=True
 
     print(f'Done.')
 

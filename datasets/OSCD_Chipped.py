@@ -75,9 +75,9 @@ class OSCD_Chipped(OSCD):
         self,
         root: str = "data",
         split: str = "train",
-        bands: str = "all",
+        bands: str = "rgb", # or "all"
         transforms: Optional[Callable[[dict[str, Tensor]], dict[str, Tensor]]] = None,
-        download: bool = False,
+        download: bool = True,
         checksum: bool = False,
         stride: Union[int, Tuple[int, int], List[int]] = 128,
         tile_size: Union[int, Tuple[int, int], List[int]] = 256
@@ -332,7 +332,8 @@ class OSCDDataModule(NonGeoDataModule):
 
         self.val_split_pct = val_split_pct
 
-        self.bands = kwargs.get("bands", "all")
+        # self.bands = kwargs.get("bands", "all")
+        self.bands = "rgb" # or "all"
         if self.bands == "rgb":
             self.mean = self.mean[[3, 2, 1]]
             self.std = self.std[[3, 2, 1]]
